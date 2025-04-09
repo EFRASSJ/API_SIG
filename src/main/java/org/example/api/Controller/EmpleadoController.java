@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/empleado")
+@CrossOrigin(origins = "http://localhost:5173")
 public class EmpleadoController {
     @Autowired
     private EmpleadoService empleadoService;
