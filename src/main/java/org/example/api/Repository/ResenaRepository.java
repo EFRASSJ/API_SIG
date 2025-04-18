@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface ResenaRepository extends MongoRepository<Resena, String> {
-    List<Resena> findByEmpleadoId(String empleadoId);
+    List<Resena> findByUserId_Id(String id);
 
 }

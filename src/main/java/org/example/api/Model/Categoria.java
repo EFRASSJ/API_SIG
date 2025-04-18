@@ -4,19 +4,24 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Data
 @Setter
 @Getter
 @Document(collection = "categorias")
 public class Categoria {
-    @Id
+
+    @MongoId(FieldType.OBJECT_ID)
     private String id;
     private String nombre;
     private String estado;
     private String imagen;
-    private String adminId;
+    @DBRef
+    private User adminId;
 
     public String getId() {
         return id;
@@ -50,11 +55,11 @@ public class Categoria {
         this.imagen = imagen;
     }
 
-    public String getAdminId() {
+    public User getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(String adminId) {
+    public void setAdminId(User adminId) {
         this.adminId = adminId;
     }
 }

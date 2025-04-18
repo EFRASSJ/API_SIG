@@ -20,9 +20,9 @@ public class Orden {
     private String estado;
     private String comentario;
     @DBRef
-    private String mesaId;
+    private Mesa mesaId;
     @DBRef
-    private List<String> productos;
+    private List<Producto> productos;
 
     public String getId() {
         return id;
@@ -56,19 +56,19 @@ public class Orden {
         this.comentario = comentario;
     }
 
-    public String getMesaId() {
+    public Mesa getMesaId() {
         return mesaId;
     }
 
-    public void setMesaId(String mesaId) {
+    public void setMesaId(Mesa mesaId) {
         this.mesaId = mesaId;
     }
 
-    public List<String> getProductos() {
+    public List<Producto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<String> productos) {
+    public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
 }

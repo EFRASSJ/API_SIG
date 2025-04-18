@@ -19,9 +19,16 @@ public class JwtTokenProvider {
 
     private final byte[] decodedKey = Base64.getDecoder().decode(SECRET_KEY);
 
-    public String generateToken(String username) {
+    public String generateToken(UserDetails userDetails) {
+        Claims claims = Jwts.claims().setSubject(userDetails.getUsername());
+
+        // Agrega los roles al payload del token
+        claims.put("roles", userDetails.getAuthorities().stream()
+                .map(grantedAuthority -> grantedAuthority.getAuthority())
+                .toList());
+
         return Jwts.builder()
-                .setSubject(username)
+                .setClaims(claims)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, decodedKey)

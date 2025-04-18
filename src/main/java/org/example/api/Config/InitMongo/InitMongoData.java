@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+
 @Configuration
 public class InitMongoData {
 
@@ -18,10 +20,11 @@ public class InitMongoData {
     @Bean
     public CommandLineRunner initData(UserRepository userRepository) {
         return args -> {
-            if (userRepository.count() == 0) {
+            if (userRepository.count() == 2 ) {
                 User user = new User();
-                user.setUsername("admin");
-                user.setPassword("admin123");
+                user.setEmail("admin@email.com");
+                user.setPassword("admin");
+                user.setRoles(List.of("ROLE_ADMIN"));
                 String hashedPassword = passwordEncoder.encode(user.getPassword());
                 user.setPassword(hashedPassword);
                 userRepository.save(user);

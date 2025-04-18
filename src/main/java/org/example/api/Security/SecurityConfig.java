@@ -31,21 +31,20 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
-                                .requestMatchers(HttpMethod.GET, "/api/empleado").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/empleado").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/empleado/{nombre}").permitAll()
-                                .requestMatchers(HttpMethod.PUT, "/api/empleado/{nombre}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/categoria").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/categoria/{nombre}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/producto").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/producto/{nombre}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/mesa").permitAll()
+                                .requestMatchers("/api/empleado").hasAnyRole("ADMIN")
+
+                                .requestMatchers( "/api/categoria").permitAll()
+                                .requestMatchers("/api/producto").permitAll()
+                                .requestMatchers("/auth/register").permitAll()
+                                .requestMatchers("/api/producto/user").permitAll()
+//                                .requestMatchers("/api/mesa").hasAnyRole("ADMIN")
+                                .requestMatchers("/api/mesa").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/mesa/{nombre}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/resena").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/resena/empleado/").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/resena").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/orden").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/orden").permitAll()
+                                .requestMatchers("/api/orden").permitAll()
+
                                 .requestMatchers(HttpMethod.GET, "/api/orden/mesa/").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/orden/mesa/").permitAll()
                         // Requiere autenticación para el resto de las rutas

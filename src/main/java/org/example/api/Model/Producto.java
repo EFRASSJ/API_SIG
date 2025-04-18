@@ -1,11 +1,15 @@
 package org.example.api.Model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.List;
 
@@ -14,16 +18,23 @@ import java.util.List;
 @Getter
 @Document(collection = "productos")
 public class Producto {
-    @Id
+
+
+    @MongoId(FieldType.OBJECT_ID)
     private String id;
+
     private String nombre;
-    private String precio;
+    private String precio; // si puedes, considera usar BigDecimal
     private String descripcion;
     private String imagen;
+
     @DBRef
-    private String adminId;
+    @JsonDeserialize
+    private User adminId; // referencia al usuario que lo creó
+
     @DBRef
-    private List<String> categorias;
+    private List<Categoria> categorias; // lista de objetos Categoria
+
 
     public String getId() {
         return id;
@@ -41,20 +52,20 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getPrecio() {
         return precio;
     }
 
     public void setPrecio(String precio) {
         this.precio = precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getImagen() {
@@ -65,19 +76,19 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    public String getAdminId() {
+    public User getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(String adminId) {
+    public void setAdminId(User adminId) {
         this.adminId = adminId;
     }
 
-    public List<String> getCategorias() {
+    public List<Categoria> getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(List<String> categorias) {
+    public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
 }

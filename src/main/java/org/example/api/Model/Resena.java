@@ -16,9 +16,10 @@ public class Resena {
     private String id;
     private String comentario;
     private Integer puntuacion;
-    private String empleadoId;
     @DBRef
-    private String mesaId;
+    private User userId;
+    @DBRef
+    private Mesa mesaId;
 
     public String getId() {
         return id;
@@ -44,19 +45,19 @@ public class Resena {
         this.puntuacion = puntuacion;
     }
 
-    public String getEmpleadoId() {
-        return empleadoId;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setEmpleadoId(String empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
-    public String getMesaId() {
+    public Mesa getMesaId() {
         return mesaId;
     }
 
-    public void setMesaId(String mesaId) {
+    public void setMesaId(Mesa mesaId) {
         this.mesaId = mesaId;
     }
 }

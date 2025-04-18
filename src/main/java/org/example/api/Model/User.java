@@ -5,19 +5,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Document(collection = "user")
 public class User {
     @Id
     private String id;
-    private String username;
+    private String nombre;
+    private String email;
     private String password;
+    private String photo;
+    private List<String> roles;
 
-    public User(String username, String password, ArrayList<Object> objects) {
+    public String getPhoto() {
+        return photo;
     }
-    public User() {
 
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getId() {
@@ -28,12 +42,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -44,4 +58,11 @@ public class User {
         this.password = password;
     }
 
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 }

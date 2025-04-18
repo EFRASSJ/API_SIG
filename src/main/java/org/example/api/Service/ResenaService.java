@@ -27,7 +27,7 @@ public class ResenaService {
     }
 
     // Buscar reseñas por ID del empleado (mesero)
-    public List<Resena> getResenasByEmpleadoId(String empleadoId) {
-        return resenaRepository.findByEmpleadoId(empleadoId);
+    public List<Resena> getResenasByEmpleadoId(String id) {
+        return resenaRepository.findByUserId_Id(id);
     }
 }
