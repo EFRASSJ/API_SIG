@@ -17,6 +17,16 @@ public class Mesa {
     private String mesa;
     private Integer capacidad;
     private String imagen;
+    private String estado;
+
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public String getId() {
         return id;

@@ -31,19 +31,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
-                                .requestMatchers("/api/empleado").hasAnyRole("ADMIN")
+                                .requestMatchers("/api/empleado").permitAll()
 
-                                .requestMatchers( "/api/categoria").permitAll()
-                                .requestMatchers("/api/producto").permitAll()
-                                .requestMatchers("/auth/register").permitAll()
-                                .requestMatchers("/api/producto/user").permitAll()
-//                                .requestMatchers("/api/mesa").hasAnyRole("ADMIN")
-                                .requestMatchers("/api/mesa").permitAll()
-                                .requestMatchers("/api/resena").permitAll()
+                                .requestMatchers( "/api/categoria/**").permitAll()
+                                .requestMatchers("/api/producto/**").permitAll()
+                                .requestMatchers("/auth/register/**").permitAll()
+                                .requestMatchers("/api/mesa/**").permitAll()
+                                .requestMatchers("/api/resena/**").permitAll()
 
-                                .requestMatchers("/api/orden").permitAll()
+                                .requestMatchers("/api/orden/**").permitAll()
 
-                                .requestMatchers("/api/orden/mesa").permitAll()
 
                         // Requiere autenticación para el resto de las rutas
                 )

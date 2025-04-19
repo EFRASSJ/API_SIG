@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -34,4 +35,17 @@ public class CategoriaService {
                 .findFirst()
                 .orElse(null);
     }
+    public Categoria updateCategoria(String id, Categoria nuevaCategoria) {
+        Optional<Categoria> optional = CategoriaRepository.findById(id);
+        if (optional.isPresent()) {
+            Categoria existente = optional.get();
+            existente.setNombre(nuevaCategoria.getNombre());
+            existente.setEstado(nuevaCategoria.getEstado());
+            existente.setImagen(nuevaCategoria.getImagen());
+            existente.setAdminId(nuevaCategoria.getAdminId());
+            return CategoriaRepository.save(existente);
+        }
+        return null;
+    }
+
 }

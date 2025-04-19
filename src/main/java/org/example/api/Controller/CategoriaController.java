@@ -24,6 +24,12 @@ public class CategoriaController {
         Categoria newCategoria = categoriaService.save(categoria);
         return newCategoria == null ? ResponseEntity.badRequest().build() : ResponseEntity.ok(newCategoria);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Categoria> updateCategoria(@PathVariable String id, @RequestBody Categoria categoria) {
+        Categoria updated = categoriaService.updateCategoria(id, categoria);
+        return updated == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(updated);
+    }
+
 
     // Ver todas las categorías
     @GetMapping

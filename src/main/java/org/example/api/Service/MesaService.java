@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MesaService {
@@ -34,5 +35,22 @@ public class MesaService {
                 .filter(m -> m.getMesa().equalsIgnoreCase(mesa))
                 .findFirst()
                 .orElse(null);
+    }
+    // Actualizar una mesa existente
+    public Mesa updateMesa(String id, Mesa mesa) {
+        Optional<Mesa> optionalMesa = MesaRepository.findById(id);
+        if (optionalMesa.isPresent()) {
+            Mesa existente = optionalMesa.get();
+
+            // Actualizar campos según los datos recibidos
+            existente.setMesa(mesa.getMesa());
+            existente.setCapacidad(mesa.getCapacidad());
+            existente.setImagen(mesa.getImagen());
+            existente.setEstado(mesa.getEstado()); // Asegúrate de tener este campo
+
+            return MesaRepository.save(existente);
+        } else {
+            return null;
+        }
     }
 }

@@ -39,4 +39,9 @@ public class MesaController {
         Mesa newMesa = mesaService.getMesaByNombre(mesa);
         return newMesa == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(newMesa);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Mesa> updateMesa(@PathVariable String id, @RequestBody Mesa mesa) {
+        Mesa updated = mesaService.updateMesa(id, mesa);
+        return updated == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(updated);
+    }
 }
