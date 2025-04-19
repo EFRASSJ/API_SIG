@@ -39,14 +39,12 @@ public class SecurityConfig {
                                 .requestMatchers("/api/producto/user").permitAll()
 //                                .requestMatchers("/api/mesa").hasAnyRole("ADMIN")
                                 .requestMatchers("/api/mesa").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/mesa/{nombre}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/resena").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/resena/empleado/").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/resena").permitAll()
+                                .requestMatchers("/api/resena").permitAll()
+
                                 .requestMatchers("/api/orden").permitAll()
 
-                                .requestMatchers(HttpMethod.GET, "/api/orden/mesa/").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/orden/mesa/").permitAll()
+                                .requestMatchers("/api/orden/mesa").permitAll()
+
                         // Requiere autenticación para el resto de las rutas
                 )
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class); // Añadir JwtAuthenticationFilter

@@ -34,9 +34,9 @@ public class ResenaController {
     }
 
     // Buscar reseñas por ID del empleado (mesero)
-    @GetMapping("/empleado/{empleadoId}")
-    public ResponseEntity<List<Resena>> getResenasByEmpleadoId(@PathVariable String id) {
-        List<Resena> resenas = resenaService.getResenasByEmpleadoId(id);
-        return resenas.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(resenas);
-    }
+//    @GetMapping("/empleado/{empleadoId}")
+//    public ResponseEntity<List<Resena>> getResenasByEmpleadoId(@PathVariable String id) {
+//        List<Resena> resenas = resenaService.getResenasByEmpleadoId(id);
+//        return resenas.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(resenas);
+//    }
 }
